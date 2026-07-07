@@ -339,6 +339,11 @@ article p {
   line-height: 1;
 }
 
+.action-count {
+  color: var(--muted-color);
+  font-size: 0.9rem;
+}
+
 .share-button {
   margin-left: auto;
 }

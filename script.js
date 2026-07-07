@@ -64,6 +64,8 @@
   const post = document.querySelector("article.post");
 
   if (post) {
+    const actionsApi = "https://kamran-writing-actions.kamranahmed-8796.workers.dev/";
+    const slug = window.location.pathname.split("/").filter(Boolean).pop();
     const title = post.querySelector("h1")?.textContent.trim() || document.title.replace(/\s*\|.*$/, "");
     const likeKey = `liked:${window.location.pathname}`;
     let actions = post.querySelector(".post-actions");
@@ -76,10 +78,12 @@
         <button class="post-action-button like-button" type="button" aria-pressed="false">
           <span class="like-icon" aria-hidden="true">&#9825;</span>
           <span class="like-label">Like</span>
+          <span class="action-count like-count">0</span>
         </button>
         <button class="post-action-button share-button" type="button">
           <span aria-hidden="true">&#8599;</span>
           <span>Share</span>
+          <span class="action-count share-count">0</span>
         </button>
         <span class="share-status" aria-live="polite"></span>
       `;
@@ -91,6 +95,22 @@
     const likeLabel = actions.querySelector(".like-label");
     const shareButton = actions.querySelector(".share-button");
     const shareStatus = actions.querySelector(".share-status");
+    let likeCount = actions.querySelector(".like-count");
+    let shareCount = actions.querySelector(".share-count");
+
+    if (!likeCount) {
+      likeCount = document.createElement("span");
+      likeCount.className = "action-count like-count";
+      likeCount.textContent = "0";
+      likeButton.append(likeCount);
+    }
+
+    if (!shareCount) {
+      shareCount = document.createElement("span");
+      shareCount.className = "action-count share-count";
+      shareCount.textContent = "0";
+      shareButton.append(shareCount);
+    }
 
     const setLikeState = (liked) => {
       likeButton.setAttribute("aria-pressed", String(liked));
@@ -98,12 +118,53 @@
       likeLabel.textContent = liked ? "Liked" : "Like";
     };
 
+    const setCounts = (counts) => {
+      likeCount.textContent = String(Math.max(0, Number(counts.likes) || 0));
+      shareCount.textContent = String(Math.max(0, Number(counts.shares) || 0));
+    };
+
+    const updateCount = async (action) => {
+      const response = await fetch(actionsApi, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, action }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Count update failed");
+      }
+
+      const counts = await response.json();
+      setCounts(counts);
+      return counts;
+    };
+
     setLikeState(localStorage.getItem(likeKey) === "true");
 
-    likeButton?.addEventListener("click", () => {
+    fetch(`${actionsApi}?slug=${encodeURIComponent(slug)}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Count fetch failed");
+        }
+        return response.json();
+      })
+      .then(setCounts)
+      .catch(() => {
+        shareStatus.textContent = "Counts unavailable.";
+      });
+
+    likeButton?.addEventListener("click", async () => {
       const nextLiked = likeButton.getAttribute("aria-pressed") !== "true";
-      setLikeState(nextLiked);
-      localStorage.setItem(likeKey, String(nextLiked));
+
+      try {
+        const action = nextLiked ? "like" : "unlike";
+        await updateCount(action);
+        setLikeState(nextLiked);
+        localStorage.setItem(likeKey, String(nextLiked));
+        shareStatus.textContent = "";
+      } catch {
+        shareStatus.textContent = "Try again.";
+      }
     });
 
     shareButton?.addEventListener("click", async () => {
@@ -116,16 +177,18 @@
       try {
         if (navigator.share) {
           await navigator.share(shareData);
+          await updateCount("share");
           return;
         }
 
         await navigator.clipboard.writeText(window.location.href);
+        await updateCount("share");
         shareStatus.textContent = "Link copied.";
         window.setTimeout(() => {
           shareStatus.textContent = "";
         }, 2400);
       } catch {
-        shareStatus.textContent = "Copy failed.";
+        shareStatus.textContent = "Try again.";
       }
     });
   }
