@@ -1,5 +1,5 @@
-# Kamran A Shaikh
+# Kamran
 
-Static personal website for Kamran A Shaikh at KamranAShaikh.com.
+Static personal website for Kamran at KamranAShaikh.com.
 
 Built with plain HTML, CSS, and JavaScript. Deployed with GitHub Pages.
