@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nasdaq valuation model by Kamran Ahmed Shaikh.">
+    <title>Nasdaq Valuation Model | Kamran</title>
+    <link rel="icon" href="/favicon.svg?v=blockk" type="image/svg+xml">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+      .project-note {
+        margin: 1.2rem 0;
+        padding: 0.75rem 0;
+        border-top: 1px solid var(--border-color-light);
+        border-bottom: 1px solid var(--border-color-light);
+        color: var(--muted-color);
+        font-style: italic;
+      }
+
+      .project-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin: 1.5rem 0 2rem;
+      }
+
+      .project-actions a {
+        border: 1px solid var(--link-color);
+        padding: 0.35rem 0.75rem;
+      }
+
+      .project-bullets {
+        padding-left: 1.25rem;
+      }
+
+      .project-bullets li {
+        margin: 0.55rem 0;
+      }
+
+      .project-frame {
+        width: 100%;
+        min-height: 680px;
+        border: 1px solid var(--border-color-light);
+        background: var(--sidebar-bg);
+      }
+
+      .project-figure {
+        margin: 1.75rem 0;
+      }
+
+      .project-figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--border-color-light);
+        background: var(--sidebar-bg);
+      }
+
+      .project-figure figcaption {
+        margin-top: 0.55rem;
+        color: var(--muted-color);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .project-actions {
+          display: block;
+        }
+
+        .project-actions a {
+          display: block;
+          margin-bottom: 0.75rem;
+        }
+
+        .project-frame {
+          min-height: 520px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="home-button" href="/projects/" aria-label="Back to projects">←</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+      <span class="icon-light">☽</span>
+      <span class="icon-dark">☼</span>
+    </button>
+
+    <div class="main-content">
+      <article class="post">
+        <h1>Nasdaq Valuation Model</h1>
+        <p class="post-subtitle"><em>Public-company valuation model and written memo.</em></p>
+
+        <p>Illustrative public-company valuation model for Nasdaq, Inc. (NDAQ), built from historical financial statements, segment-level forecast drivers, leverage schedules, free cash flow projections, and forward trading multiple analysis. The project pairs an Excel model with a written valuation memo so readers can review both the mechanics of the forecast and the investment-style narrative behind the outputs.</p>
+
+        <p class="project-note">Illustrative public-company valuation model; no investment advice</p>
+
+        <div class="project-actions">
+          <a href="./NDAQ_Financials_ValuationAnalysis.pdf">Open PDF memo</a>
+          <a href="./NDAQ_Financials_ValuationAnalysis.pdf" download>Download PDF memo</a>
+          <a href="./sample_nasdaq_financials.xlsx" download>Download Excel model</a>
+          <a href="https://github.com/kamran-py/ndaq-financials-valuation-model">GitHub repo</a>
+        </div>
+
+        <h2>Model Notes</h2>
+        <ul class="project-bullets">
+          <li>Built historical financial statement summary, profitability ratios, leverage metrics, per-share outputs, and trading multiples for Nasdaq.</li>
+          <li>Forecasts product-segment revenue drivers across Capital Access Platforms, Financial Technology, Market Services, and other revenue.</li>
+          <li>Projects EBITDA, operating income, net income, free cash flow, net debt, and deleveraging from 2026E to 2028E.</li>
+          <li>Includes forward P/E, EV/Sales, EV/EBITDA, EV/EBIT, EV/FCF, ROE, and share-price/enterprise-value bridge outputs.</li>
+          <li>Provides written memo commentary tying growth, margin expansion, free cash flow, leverage reduction, and valuation multiples into a concise public-company valuation view.</li>
+        </ul>
+
+        <h2>Memo</h2>
+        <object class="project-frame" data="./NDAQ_Financials_ValuationAnalysis.pdf" type="application/pdf">
+          <p>PDF preview is unavailable in this browser. <a href="./NDAQ_Financials_ValuationAnalysis.pdf">Open the memo</a>.</p>
+        </object>
+
+        <h2>Screenshots</h2>
+        <figure class="project-figure">
+          <img src="./screenshots/valuation_tab.png" alt="Nasdaq valuation tab showing forward trading multiples and enterprise value bridge">
+          <figcaption>Valuation tab: forward trading multiples, return metrics, and share-price/enterprise-value bridge outputs.</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <img src="./screenshots/forecast_drivers.png" alt="Nasdaq forecast driver assumptions for revenue growth, margins, taxes, capex, and share count">
+          <figcaption>Forecast assumptions: segment growth, EBITDA margin, D&amp;A, tax rate, interest, capex, and diluted share change assumptions.</figcaption>
+        </figure>
+      </article>
+    </div>
+
+    <footer>
+      <p>@Copyright Kamran, 2026</p>
+    </footer>
+
+    <script src="../../script.js"></script>
+  </body>
+</html>
