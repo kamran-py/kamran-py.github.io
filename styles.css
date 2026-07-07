@@ -306,6 +306,50 @@ article p {
   line-height: 0;
 }
 
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 2.5rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--border-color-light);
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.post-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--border-color-light);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  color: var(--muted-color);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.post-action-button:hover,
+.post-action-button[aria-pressed="true"] {
+  color: var(--link-color);
+  border-color: var(--link-color);
+}
+
+.like-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.share-button {
+  margin-left: auto;
+}
+
+.share-status {
+  min-width: 4.75rem;
+  color: var(--muted-color);
+  font-size: 0.9rem;
+}
+
 .section-list {
   margin: 2rem 0;
 }
