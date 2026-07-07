@@ -108,7 +108,7 @@ a:hover {
 }
 
 .title {
-  margin-bottom: 3rem;
+  margin-bottom: 2.25rem;
   padding-top: 2rem;
   text-align: center;
 }
@@ -119,7 +119,7 @@ a:hover {
   font-size: 2.5rem;
   font-variant: small-caps;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.075em;
   line-height: 1.3;
 }
 
@@ -460,7 +460,7 @@ footer p {
   }
 
   .title {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .title h1 {
