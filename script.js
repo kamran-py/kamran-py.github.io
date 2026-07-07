@@ -62,27 +62,29 @@
   });
 
   const post = document.querySelector("article.post");
-  const postContent = post?.querySelector(".post-content");
 
-  if (post && postContent) {
+  if (post) {
     const title = post.querySelector("h1")?.textContent.trim() || document.title.replace(/\s*\|.*$/, "");
     const likeKey = `liked:${window.location.pathname}`;
-    const isLiked = localStorage.getItem(likeKey) === "true";
-    const actions = document.createElement("div");
-    actions.className = "post-actions";
-    actions.innerHTML = `
-      <button class="post-action-button like-button" type="button" aria-pressed="${isLiked}">
-        <span class="like-icon" aria-hidden="true">${isLiked ? "&#9829;" : "&#9825;"}</span>
-        <span class="like-label">${isLiked ? "Liked" : "Like"}</span>
-      </button>
-      <button class="post-action-button share-button" type="button">
-        <span aria-hidden="true">&#8599;</span>
-        <span>Share</span>
-      </button>
-      <span class="share-status" aria-live="polite"></span>
-    `;
+    let actions = post.querySelector(".post-actions");
 
-    postContent.after(actions);
+    if (!actions) {
+      actions = document.createElement("div");
+      actions.className = "post-actions";
+      actions.setAttribute("aria-label", "Writing actions");
+      actions.innerHTML = `
+        <button class="post-action-button like-button" type="button" aria-pressed="false">
+          <span class="like-icon" aria-hidden="true">&#9825;</span>
+          <span class="like-label">Like</span>
+        </button>
+        <button class="post-action-button share-button" type="button">
+          <span aria-hidden="true">&#8599;</span>
+          <span>Share</span>
+        </button>
+        <span class="share-status" aria-live="polite"></span>
+      `;
+      post.querySelector(".post-content")?.after(actions);
+    }
 
     const likeButton = actions.querySelector(".like-button");
     const likeIcon = actions.querySelector(".like-icon");
@@ -90,15 +92,21 @@
     const shareButton = actions.querySelector(".share-button");
     const shareStatus = actions.querySelector(".share-status");
 
-    likeButton.addEventListener("click", () => {
+    const setLikeState = (liked) => {
+      likeButton.setAttribute("aria-pressed", String(liked));
+      likeIcon.innerHTML = liked ? "&#9829;" : "&#9825;";
+      likeLabel.textContent = liked ? "Liked" : "Like";
+    };
+
+    setLikeState(localStorage.getItem(likeKey) === "true");
+
+    likeButton?.addEventListener("click", () => {
       const nextLiked = likeButton.getAttribute("aria-pressed") !== "true";
-      likeButton.setAttribute("aria-pressed", String(nextLiked));
-      likeIcon.innerHTML = nextLiked ? "&#9829;" : "&#9825;";
-      likeLabel.textContent = nextLiked ? "Liked" : "Like";
+      setLikeState(nextLiked);
       localStorage.setItem(likeKey, String(nextLiked));
     });
 
-    shareButton.addEventListener("click", async () => {
+    shareButton?.addEventListener("click", async () => {
       const shareData = {
         title,
         text: title,

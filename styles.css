@@ -310,8 +310,8 @@ article p {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  margin-top: 2.5rem;
-  padding: 1.1rem 0;
+  margin: 1.25rem 0 2rem;
+  padding: 0.85rem 0;
   border-top: 1px solid var(--border-color-light);
   border-bottom: 1px solid var(--border-color-light);
 }
