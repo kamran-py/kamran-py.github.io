@@ -7,76 +7,6 @@
     <title>Nasdaq Valuation Model | Kamran</title>
     <link rel="icon" href="/favicon.svg?v=blockk" type="image/svg+xml">
     <link rel="stylesheet" href="../../styles.css">
-    <style>
-      .project-note {
-        margin: 1.2rem 0;
-        padding: 0.75rem 0;
-        border-top: 1px solid var(--border-color-light);
-        border-bottom: 1px solid var(--border-color-light);
-        color: var(--muted-color);
-        font-style: italic;
-      }
-
-      .project-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        margin: 1.5rem 0 2rem;
-      }
-
-      .project-actions a {
-        border: 1px solid var(--link-color);
-        padding: 0.35rem 0.75rem;
-      }
-
-      .project-bullets {
-        padding-left: 1.25rem;
-      }
-
-      .project-bullets li {
-        margin: 0.55rem 0;
-      }
-
-      .project-frame {
-        width: 100%;
-        min-height: 680px;
-        border: 1px solid var(--border-color-light);
-        background: var(--sidebar-bg);
-      }
-
-      .project-figure {
-        margin: 1.75rem 0;
-      }
-
-      .project-figure img {
-        display: block;
-        width: 100%;
-        height: auto;
-        border: 1px solid var(--border-color-light);
-        background: var(--sidebar-bg);
-      }
-
-      .project-figure figcaption {
-        margin-top: 0.55rem;
-        color: var(--muted-color);
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 768px) {
-        .project-actions {
-          display: block;
-        }
-
-        .project-actions a {
-          display: block;
-          margin-bottom: 0.75rem;
-        }
-
-        .project-frame {
-          min-height: 520px;
-        }
-      }
-    </style>
   </head>
   <body>
     <a class="home-button" href="/projects/" aria-label="Back to projects">←</a>
@@ -117,12 +47,22 @@
 
         <h2>Screenshots</h2>
         <figure class="project-figure">
-          <img src="./screenshots/valuation_tab.png" alt="Nasdaq valuation tab showing forward trading multiples and enterprise value bridge">
-          <figcaption>Valuation tab: forward trading multiples, return metrics, and share-price/enterprise-value bridge outputs.</figcaption>
+          <a href="./screenshots/historical_financials.png" target="_blank" rel="noopener">
+            <img src="./screenshots/historical_financials.png" alt="Nasdaq historical financials showing income statement, balance sheet, cash flow, supplemental, and profitability metrics">
+          </a>
+          <figcaption>Historical financials: income statement, balance sheet, cash flow, supplemental debt/lease items, and profitability metrics.</figcaption>
         </figure>
         <figure class="project-figure">
-          <img src="./screenshots/forecast_drivers.png" alt="Nasdaq forecast driver assumptions for revenue growth, margins, taxes, capex, and share count">
-          <figcaption>Forecast assumptions: segment growth, EBITDA margin, D&amp;A, tax rate, interest, capex, and diluted share change assumptions.</figcaption>
+          <a href="./screenshots/operating_forecast.png" target="_blank" rel="noopener">
+            <img src="./screenshots/operating_forecast.png" alt="Nasdaq operating forecast showing EPS, product segments, income statement forecast, and balance sheet forecast">
+          </a>
+          <figcaption>Operating forecast: EPS, product-segment revenue, income statement bridge, and balance-sheet assumptions through 2028E.</figcaption>
+        </figure>
+        <figure class="project-figure">
+          <a href="./screenshots/valuation_summary.png" target="_blank" rel="noopener">
+            <img src="./screenshots/valuation_summary.png" alt="Nasdaq valuation estimates showing forward multiples, returns, market capitalization, and enterprise value">
+          </a>
+          <figcaption>Valuation summary: forward multiples, return metrics, share price, market capitalization, and enterprise value outputs.</figcaption>
         </figure>
       </article>
     </div>

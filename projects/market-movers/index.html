@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Market Movers dashboard project by Kamran.">
+    <title>Market Movers | Kamran</title>
+    <link rel="icon" href="/favicon.svg?v=blockk" type="image/svg+xml">
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <a class="home-button" href="/projects/" aria-label="Back to projects">←</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+      <span class="icon-light">☽</span>
+      <span class="icon-dark">☼</span>
+    </button>
+
+    <div class="main-content">
+      <article class="post">
+        <h1>Market Movers</h1>
+        <p class="post-subtitle"><em>Interactive S&amp;P 500 and Nasdaq-100 dashboard with sector filters, browser visualizations, exports, and delayed market-data integration.</em></p>
+
+        <p>Lightweight browser dashboard for comparing S&amp;P 500 and Nasdaq-100 stock performance. It can run from a committed market snapshot or update with 15-minute-delayed Alpaca market data when API credentials are available.</p>
+
+        <p>The project is strongest as a full-stack static-plus-edge app: the browser handles search, comparison, charting, sector/sub-industry filters, pagination, and CSV exports, while Cloudflare Pages Functions keep market-data credentials server-side and cache delayed quotes.</p>
+
+        <p class="project-note">Deployed dashboard with saved-snapshot fallback and optional delayed live-price refresh</p>
+
+        <div class="project-actions">
+          <a href="https://market-movers.pages.dev/">Open live dashboard</a>
+          <a href="https://github.com/kamran-py/market-movers">GitHub repo</a>
+          <a href="https://github.com/kamran-py/market-movers/blob/main/app.js">Browser app</a>
+          <a href="https://github.com/kamran-py/market-movers/blob/main/functions/api/quotes.js">Cloudflare quote endpoint</a>
+        </div>
+
+        <div class="project-facts">
+          <div class="project-fact">
+            <strong>S&amp;P 500</strong>
+            <span>Index universe included in the dashboard.</span>
+          </div>
+          <div class="project-fact">
+            <strong>Nasdaq-100</strong>
+            <span>Second index universe with overlapping membership handled in the UI.</span>
+          </div>
+          <div class="project-fact">
+            <strong>5 minutes</strong>
+            <span>Server-side quote cache window for delayed market data.</span>
+          </div>
+        </div>
+
+        <h2>Features</h2>
+        <ul class="project-bullets">
+          <li>Search and compare selected tickers across daily, month-to-date, and year-to-date performance views.</li>
+          <li>Filter the universe by GICS sector and sub-industry, with visible counts for each filter state.</li>
+          <li>Render browser-based charts and movers tables without a heavy front-end framework.</li>
+          <li>Export selected comparison data and market-mover tables as CSV files from the browser.</li>
+          <li>Persist selected tickers locally so repeat visitors return to their preferred comparison set.</li>
+        </ul>
+
+        <h2>Market Data</h2>
+        <ul class="project-bullets">
+          <li>Uses a committed `data.js` snapshot as a reliable fallback when live credentials or market-data calls are unavailable.</li>
+          <li>Refreshes the snapshot with a Python generator that pulls current index membership and price history.</li>
+          <li>Uses a Cloudflare Pages Function endpoint for delayed Alpaca snapshots so API secrets remain server-side.</li>
+          <li>Normalizes quote payloads, handles split-adjusted previous closes, batches symbols, and returns compact browser-ready quote data.</li>
+        </ul>
+
+        <h2>Deployment</h2>
+        <p>The repository is configured for Cloudflare Pages with no build command and the project root as the output directory. The live version can run as a static snapshot and then upgrade to delayed market data after Cloudflare secrets are configured.</p>
+      </article>
+    </div>
+
+    <footer>
+      <p>@Copyright Kamran, 2026</p>
+    </footer>
+
+    <script src="../../script.js"></script>
+  </body>
+</html>

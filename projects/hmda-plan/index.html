@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="HMDA mortgage-lending panel pipeline by Kamran.">
+    <title>HMDA County Panel | Kamran</title>
+    <link rel="icon" href="/favicon.svg?v=blockk" type="image/svg+xml">
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <a class="home-button" href="/projects/" aria-label="Back to projects">←</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+      <span class="icon-light">☽</span>
+      <span class="icon-dark">☼</span>
+    </button>
+
+    <div class="main-content">
+      <article class="post">
+        <h1>HMDA County Panel</h1>
+        <p class="post-subtitle"><em>Large-scale public mortgage-loan pipeline using DuckDB, Parquet, schema harmonization, and QA checks.</em></p>
+
+        <p>Reproducible data-construction pipeline for public HMDA mortgage-lending records from 2007 through 2024. The project converts annual loan-level files into Parquet, builds a DuckDB database, normalizes geography across the 2018 schema break, and exports analysis-ready county-year and lender-county-year panels.</p>
+
+        <p>The project is built as a research foundation rather than a final causal study. It makes the data source, assumptions, exclusions, schema breaks, and generated outputs legible enough for later work on lender presence, geographic expansion, and fintech or nonbank mortgage lending.</p>
+
+        <p class="project-note">Data-construction and research-readiness artifact; not a final causal analysis</p>
+
+        <div class="project-actions">
+          <a href="https://github.com/kamran-py/hmda_plan">GitHub repo</a>
+          <a href="https://github.com/kamran-py/hmda_plan/blob/master/docs/final_summary.md">Research-methods memo</a>
+          <a href="https://github.com/kamran-py/hmda_plan/blob/master/output/county_year_lending.csv">County-year CSV</a>
+          <a href="https://github.com/kamran-py/hmda_plan/blob/master/output/lender_county_year_sample.csv">Lender-county sample</a>
+        </div>
+
+        <div class="project-facts">
+          <div class="project-fact">
+            <strong>312.1M</strong>
+            <span>Loan-level HMDA rows processed across annual files.</span>
+          </div>
+          <div class="project-fact">
+            <strong>58,006</strong>
+            <span>County-year rows in the main public aggregate.</span>
+          </div>
+          <div class="project-fact">
+            <strong>8.9M</strong>
+            <span>Lender-county-year rows generated locally as a Parquet panel.</span>
+          </div>
+        </div>
+
+        <h2>Pipeline</h2>
+        <ul class="project-bullets">
+          <li>Downloads public HMDA loan-level source files for 2007-2024 from historic CFPB files and the HMDA Data Browser API.</li>
+          <li>Converts annual raw files into Parquet to avoid full-file in-memory pandas workflows on tens of gigabytes of raw data.</li>
+          <li>Builds a DuckDB database with canonical loan-level views, geography-normalized views, metadata tables, and QA tables.</li>
+          <li>Normalizes pre-2018 and post-2018 geography, including state FIPS, county FIPS, and prefix mismatch checks.</li>
+          <li>Builds county-year and lender-county-year aggregates for later descriptive, panel, and geographic-expansion research.</li>
+        </ul>
+
+        <h2>Quality Checks</h2>
+        <ul class="project-bullets">
+          <li>County-year aggregate record totals reconcile to the geography-normalized loan-level rows with usable county FIPS.</li>
+          <li>Missing-geography rows are excluded from the main county-level tables and preserved in QA tables.</li>
+          <li>County-year and lender-county-year outputs pass non-null key and duplicate-grain checks.</li>
+          <li>Application-style denominators separate non-purchase application records from purchased-loan records.</li>
+        </ul>
+
+        <h2>Limitations</h2>
+        <p>The current pipeline does not classify lenders as fintech, nonbank, or bank. Pre-2018 lender IDs use respondent IDs and post-2018 IDs use LEIs, so lender continuity across the schema break requires external identity enrichment. That is the right next step before calculating fintech lender shares or running fintech-expansion research designs.</p>
+      </article>
+    </div>
+
+    <footer>
+      <p>@Copyright Kamran, 2026</p>
+    </footer>
+
+    <script src="../../script.js"></script>
+  </body>
+</html>
