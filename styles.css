@@ -263,6 +263,12 @@ article p {
   margin-top: 1.5em;
 }
 
+.post {
+  max-width: 512px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .post-content {
   line-height: 1.75;
 }
