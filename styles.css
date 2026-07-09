@@ -499,6 +499,7 @@ article p {
 
 .feedback-box input,
 .feedback-box textarea {
+  box-sizing: border-box;
   width: 100%;
   border: 1px solid var(--border-color-light);
   margin-bottom: 1rem;
@@ -611,9 +612,6 @@ footer p {
     grid-template-columns: 1fr;
   }
 
-  .feedback-box {
-    padding: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
