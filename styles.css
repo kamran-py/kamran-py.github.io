@@ -484,7 +484,7 @@ article p {
 
 .feedback-form {
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-right: 0;
   margin-left: 0;
 }
@@ -492,7 +492,7 @@ article p {
 .feedback-box {
   box-sizing: border-box;
   width: 100%;
-  padding: 1rem 0;
+  padding: 0;
 }
 
 .feedback-box label {
