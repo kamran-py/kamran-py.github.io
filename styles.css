@@ -483,10 +483,15 @@ article p {
 }
 
 .feedback-form {
+  width: 100%;
   margin-top: 2rem;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .feedback-box {
+  box-sizing: border-box;
+  width: 100%;
   padding: 1rem 0;
 }
 
@@ -519,6 +524,8 @@ article p {
   color: var(--muted-color);
   font-size: 0.95rem;
   line-height: 1.55;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .feedback-actions {
