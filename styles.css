@@ -264,7 +264,7 @@ article p {
 }
 
 .post {
-  max-width: 512px;
+  max-width: 608px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -275,7 +275,6 @@ article p {
 
 .post-content p {
   margin: 1em 0;
-  text-indent: 1.5em;
 }
 
 .post-content blockquote p,
@@ -362,6 +361,13 @@ article p {
 
 .section-list {
   margin: 2rem 0;
+}
+
+.projects-page,
+.feedback-page {
+  max-width: 608px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .section-item {
