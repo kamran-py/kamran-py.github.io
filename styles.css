@@ -264,7 +264,7 @@ article p {
 }
 
 .post {
-  max-width: 608px;
+  max-width: 656px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -365,7 +365,7 @@ article p {
 
 .projects-page,
 .feedback-page {
-  max-width: 608px;
+  max-width: 656px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -487,7 +487,7 @@ article p {
 }
 
 .feedback-box {
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .feedback-box label {
@@ -609,6 +609,10 @@ footer p {
 
   .project-facts {
     grid-template-columns: 1fr;
+  }
+
+  .feedback-box {
+    padding: 1rem;
   }
 }
 
